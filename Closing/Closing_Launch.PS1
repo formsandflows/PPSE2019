@@ -2,8 +2,8 @@ Param (
     [string]$id
 )
 
-$relativeUrl = (Get-AzureRmAutomationVariable -ResourceGroupName "RG-PPSE-1" -AutomationAccountName "RG-PPSE-1-AA-1" -Name "relativeUrl").value
-$url = (Get-AzureRmAutomationVariable -ResourceGroupName "RG-PPSE-1" -AutomationAccountName "RG-PPSE-1-AA-1" -Name "url").value
+$relativeUrl = Get-AutomationVariable -Name 'relativeUrl'
+$url = Get-AutomationVariable -Name 'url'
 
 $cred = Get-AutomationPSCredential -Name 'Service Account'
 
