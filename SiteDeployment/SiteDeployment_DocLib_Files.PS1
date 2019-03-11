@@ -19,7 +19,7 @@ if ($pnpList -eq $null) {
 	$pnpList = New-PnPList -Title $title -Template $template -Url $url -Hidden:$hidden -EnableVersioning:$enableVersioning -EnableContentTypes:$enableContentTypes -OnQuickLaunch:$onQuickLaunch
 
 	Set-PnPList -Identity $title -EnableFolderCreation $true -BreakRoleInheritance:$true -CopyRoleAssignments:$false -EnableMinorVersions $false
-	Set-PnPListPermission -User 's_app1@ppse.onmicrosoft.com' -Identity $title -RemoveRole 'Full Control'
+	Set-PnPListPermission -User $properties.serviceAccount -Identity $title -RemoveRole 'Full Control'
 
 	$pnpCT = Get-PnPContentType -Identity 'Minutes' -InSiteHierarchy:$true
 	$pnpList = Get-PnPList -Identity 'Files'
