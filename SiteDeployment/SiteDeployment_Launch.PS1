@@ -1,8 +1,13 @@
 Param (
-    [string]$id = 0,
-    [string]$title = 'Meeting',
-    [string]$date = '2019-12-31'
+    [string]$id,
+    [string]$title,
+    [string]$date
 )
+
+$appName = Get-AutomationVariable -Name 'appName'
+$relativeUrl = Get-AutomationVariable -Name 'relativeUrl'
+$serviceAccount = Get-AutomationVariable -Name 'serviceAccount'
+$url = Get-AutomationVariable -Name 'url'
 
 $properties = @{}
 
@@ -11,19 +16,18 @@ for ($i = 0; $i -lt 7; $i++) {
 	$subsiteUrl += Get-Random -Minimum 0 -Maximum 9
 }
 
-$properties.appName = 'APP3'
-$properties.relativeUrl = '/sites/test2'
-$properties.scriptAccount = 's_app1@ppse.onmicrosoft.com'
+$properties.appName = $appName
+$properties.relativeUrl = $relativeUrl
+$properties.requestID = $id
+$properties.serviceAccount = $serviceAccount
+$properties.subsiteDate = Get-Date($date)
+$properties.subsiteTitle = $title
+$properties.subsiteUrl = $subsiteUrl
+$properties.url = $url + $relativeUrl
 
 $properties.groupNameFAM = $properties.appName + ' - FAM'
 $properties.groupNameMembers = $properties.appName + ' - Members'
 $properties.groupNameVisitors = $properties.appName + ' - Visitors'
-$properties.requestID = $id
-$properties.subsiteDate = Get-Date($date)
-$properties.subsiteTitle = $title
-$properties.subsiteUrl = $subsiteUrl
-$properties.url = 'https://ppse.sharepoint.com' + $properties.relativeUrl
-
 $properties.suburl = $properties.url + '/' + $properties.subsiteUrl
 
 .\SiteDeployment_Overview_AddItem.PS1 -properties $properties
