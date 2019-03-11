@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.suburl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 Set-PnPListPermission -Identity 'Agenda' -Group $properties.groupNameFAM -AddRole 'Contribute'
 Set-PnPListPermission -Identity 'Agenda' -Group $properties.groupNameMembers -AddRole 'Contribute'
