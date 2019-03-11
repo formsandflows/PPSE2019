@@ -8,7 +8,7 @@ $employees = @()
 
 $pnpListItems = Get-PnPListItem -List 'Employees'
 foreach ($pnpListItem in $pnpListItems) {
-	if (($pnpListItem.FieldVAlues.fafapp3erole -eq 'Member') -or ($pnpListItem.FieldVAlues.fafapp3erole -eq 'Visitor')) {
+	if (($pnpListItem.FieldValues.fafapp3erole -eq 'Member') -or ($pnpListItem.FieldValues.fafapp3erole -eq 'Visitor')) {
 		$employees += $pnpListItem.FieldValues.fafapp3eaccount.Email
 	}
 }
