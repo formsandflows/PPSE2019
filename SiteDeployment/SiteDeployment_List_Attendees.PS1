@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.suburl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 $title = 'Attendees'
 $template = 'GenericList'
@@ -17,7 +19,7 @@ if ($pnpList -eq $null) {
 	$pnpList = New-PnPList -Title $title -Template $template -Url $url -Hidden:$hidden -EnableVersioning:$enableVersioning -EnableContentTypes:$enableContentTypes -OnQuickLaunch:$onQuickLaunch
 
 	Set-PnPList -Identity $title -EnableAttachments $false -EnableFolderCreation $false -BreakRoleInheritance:$true -CopyRoleAssignments:$false
-	Set-PnPListPermission -User 's_app1@ppse.onmicrosoft.com' -Identity $title -RemoveRole 'Full Control'
+	Set-PnPListPermission -User $properties.serviceAccount -Identity $title -RemoveRole 'Full Control'
 
 	$xml = '<Field
 		Type="User"
