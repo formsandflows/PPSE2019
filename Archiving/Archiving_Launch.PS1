@@ -9,7 +9,6 @@ $properties = @{}
 $properties.archiveUrl = $url + $relativeArchiveUrl
 $properties.localStorageAgenda = 'Agenda.csv'
 $properties.localStorageAttendees = 'Attendees.csv'
-$properties.localStorageFile = ''
 $properties.localStorageLinks = 'Links.csv'
 $properties.overviewItems = @()
 $properties.relativeArchiveUrl = $relativeArchiveUrl
