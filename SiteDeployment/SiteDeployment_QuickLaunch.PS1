@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.suburl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 Remove-PnPNavigationNode -All:$true -Force:$true
 Remove-PnPNavigationNode -Identity 2001 -Force:$true
