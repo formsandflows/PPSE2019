@@ -3,7 +3,9 @@ Param (
 	 $overviewItem
 )
 
-Connect-PnPOnline -Url $properties.archiveUrl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
 
 $properties.containerTitle = $properties.itemUrl -replace ($properties.url + '/'), ''
 $properties.archiveFolderUrl = $properties.archiveUrl + '/Files/' + $properties.containerTitle
