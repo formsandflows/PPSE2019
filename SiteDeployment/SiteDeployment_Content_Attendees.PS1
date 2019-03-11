@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.url
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $employees = @()
 
@@ -15,7 +17,7 @@ foreach ($pnpListItem in $pnpListItems) {
 
 Disconnect-PnPOnline
 
-Connect-PnPOnline -Url $properties.suburl
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 foreach ($employee in $employees) {
 	$pnpListItem = Add-PnPListItem -List 'Attendees' -Values @{'Title' = 'Attendees'; 'fafapp3a2account' = $employee}
