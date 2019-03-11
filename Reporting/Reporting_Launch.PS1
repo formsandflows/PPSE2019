@@ -8,5 +8,5 @@ $properties.localStorageOverview2 = 'Report2_'
 $properties.relativeUrl = $relativeUrl
 $properties.url = $url + $relativeUrl
 
-.\Reporting_1.PS1 -properties $properties
-.\Reporting_2.PS1 -properties $properties
+.\Reporting_1.ps1 -properties $properties
+.\Reporting_2.ps1 -properties $properties

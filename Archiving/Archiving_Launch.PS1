@@ -15,21 +15,21 @@ $properties.relativeArchiveUrl = $relativeArchiveUrl
 $properties.relativeUrl = $relativeUrl
 $properties.url = $url + $relativeUrl
 
-.\Archiving_GetItems.PS1 -properties $properties
+.\Archiving_GetItems.ps1 -properties $properties
 
 $overviewItems = $properties.overviewItems
 foreach ($overviewItem in $overviewItems) {
-    .\Archiving_GetItemProperties.PS1 -properties $properties -overviewItem $overviewItem
-    .\Archiving_UpdateStatus.PS1 -properties $properties -overviewItem $overviewItem -status 'Archiving...'
+    .\Archiving_GetItemProperties.ps1 -properties $properties -overviewItem $overviewItem
+    .\Archiving_UpdateStatus.ps1 -properties $properties -overviewItem $overviewItem -status 'Archiving...'
 
-    .\Archiving_CreateContainer.PS1 -properties $properties -overviewItem $overviewItem
+    .\Archiving_CreateContainer.ps1 -properties $properties -overviewItem $overviewItem
 
-    .\Archiving_Agenda.PS1 -properties $properties
-    .\Archiving_Attendees.PS1 -properties $properties
-    .\Archiving_Links.PS1 -properties $properties
+    .\Archiving_Agenda.ps1 -properties $properties
+    .\Archiving_Attendees.ps1 -properties $properties
+    .\Archiving_Links.ps1 -properties $properties
 
-    .\Archiving_Files.PS1 -properties $properties
+    .\Archiving_Files.ps1 -properties $properties
 
-    .\Archiving_UpdateUrl.PS1 -properties $properties -overviewItem $overviewItem
-    .\Archiving_UpdateStatus.PS1 -properties $properties -overviewItem $overviewItem -status 'Archived'
+    .\Archiving_UpdateUrl.ps1 -properties $properties -overviewItem $overviewItem
+    .\Archiving_UpdateStatus.ps1 -properties $properties -overviewItem $overviewItem -status 'Archived'
 }

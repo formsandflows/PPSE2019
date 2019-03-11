@@ -14,6 +14,6 @@ Set-PnPListItemPermission -List 'Overview' -Identity $properties.OverviewListIte
 Set-PnPListItemPermission -List 'Overview' -Identity $properties.OverviewListItemID -Group $properties.groupNameMembers  -AddRole 'Contribute'
 Set-PnPListItemPermission -List 'Overview' -Identity $properties.OverviewListItemID -Group $properties.groupNameVisitors  -AddRole 'Read'
 
-Set-PnPListItemPermission -List 'Overview' -Identity $properties.OverviewListItemID -User $properties.scriptAccount  -RemoveRole 'Full Control'
+Set-PnPListItemPermission -List 'Overview' -Identity $properties.OverviewListItemID -User $properties.serviceAccount  -RemoveRole 'Full Control'
 
 Disconnect-PnPOnline
