@@ -2,6 +2,8 @@ Param (
 	$properties
 )
 
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
 $tabelName = 'Report2'
 $table = New-Object system.Data.DataTable $tabName
 
@@ -11,7 +13,7 @@ $col2 = New-Object system.Data.DataColumn size,([string])
 $table.columns.add($col1)
 $table.columns.add($col2)
 
-Connect-PnPOnline -Url $properties.url
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 $query = '<View><Query><Where><Eq><FieldRef Name="fafapp3ostatus" /><Value Type="Text">Active</Value></Eq></Where></Query></View>'
 $pnpListItems = Get-PnPListItem -List 'Overview' -Query $query
 Disconnect-PnPOnline
@@ -21,7 +23,7 @@ foreach ($pnpListItem in $pnpListItems) {
 	
 	$url = $pnpListItem.FieldValues.fafapp3ourl
 	
-	Connect-PnPOnline -Url $url
+	Connect-PnPOnline -Url $url -Credentials $cred
 
 	$size = 0
 	$pnpListItems2 = Get-PnPListItem -List 'Files'
@@ -37,7 +39,7 @@ foreach ($pnpListItem in $pnpListItems) {
 	$table.Rows.Add($row)
 }
 
-Connect-PnPOnline -Url $properties.url
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $date = Get-Date
 $timestamp = $date.Year.ToString()
