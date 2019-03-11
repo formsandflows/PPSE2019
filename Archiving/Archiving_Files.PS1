@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.itemUrl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.itemUrl -Credentials $cred
 $pnpListItems = Get-PnPListItem -List 'Files'
 Disconnect-PnPOnline
 
@@ -53,11 +55,11 @@ foreach ($pnpListItem in $pnpListItems) {
 	$file = $properties.localStorageFile + $pnpListItem.FieldValues.FileLeafRef + '.csv'
 	$table | Export-Csv -Path $file -Delimiter ';' -Encoding 'UTF8' -NoTypeInformation
 
-	Connect-PnPOnline -Url $properties.archiveUrl
+	Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
 	$pnpFile = Add-PnPFile -Path $file -Folder $properties.localArchiveFolderUrl
 	Disconnect-PnPOnline
 
-	Connect-PnPOnline -Url $properties.itemUrl
+	Connect-PnPOnline -Url $properties.itemUrl -Credentials $cred
 	$fileRef = $pnpListItem.FieldValues.FileRef
 	$pnpFile = Copy-PnPFile -SourceUrl $fileRef -TargetUrl $properties.relativeArchiveFolderUrl -OverwriteIfAlreadyExists:$true -Force:$true
 	Disconnect-PnPOnline
