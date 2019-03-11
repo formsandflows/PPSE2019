@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.suburl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 $pnpCT = Get-PnPContentType -Identity 'Minutes' -InSiteHierarchy:$true
 $pnpList = Get-PnPList -Identity 'Files'
