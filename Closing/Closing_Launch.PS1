@@ -1,12 +1,17 @@
 Param (
-    [string]$id = 4
+    [string]$id
 )
+
+$relativeUrl = (Get-AzureRmAutomationVariable -ResourceGrupName "RG-PPSE-1" -AutomationAccountName "RG-PPSE-1-AA-1" -name "relativeUrl").Value
+$url = (Get-AzureRmAutomationVariable -ResourceGrupName "RG-PPSE-1" -AutomationAccountName "RG-PPSE-1-AA-1" -name "url").Value
+
+$cred = Get-AutomationPSCredential -Name 'Service Account'
 
 $properties = @{}
 
-$properties.url = 'https://ppse.sharepoint.com/sites/test2'
+$properties.url = $url + $relativeUrl
 
-Connect-PnPOnline -Url $properties.url
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 Set-PnPListItemPermission -List 'Overview' -Identity $id -InheritPermissions:$true
 $pnpListItem = Set-PnPListItem -List 'Overview' -Identity $id -Values @{'fafapp3ostatus' = 'Closed'}
