@@ -3,7 +3,9 @@ Param (
 	$overviewItem
 )
 
-Connect-PnPOnline -Url $properties.url
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $pnpListItem = Get-PnPListItem -List 'Overview' -Id $overviewItem
 
