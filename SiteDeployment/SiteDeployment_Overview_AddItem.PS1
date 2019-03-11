@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.url
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $pnpListItem = Add-PnPListItem -List 'Overview' -Values @{'Title' = $properties.subsiteTitle; 'fafapp3ourl' = $properties.suburl; 'fafapp3odate' = $properties.subsiteDate; 'fafapp3ostatus' = 'Creating subsite'}
 
