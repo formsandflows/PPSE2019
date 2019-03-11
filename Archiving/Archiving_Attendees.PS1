@@ -2,6 +2,8 @@ Param (
 	$properties
 )
 
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
 $tabelName = "Attendees"
 $table = New-Object system.Data.DataTable $tabName
 
@@ -15,7 +17,7 @@ $table.columns.add($col2)
 $table.columns.add($col3)
 $table.columns.add($col4)
 
-Connect-PnPOnline -Url $properties.itemUrl
+Connect-PnPOnline -Url $properties.itemUrl -Credentials $cred
 
 $pnpListItems = Get-PnPListItem -List 'Attendees'
 
@@ -34,7 +36,7 @@ $table | Export-Csv -Path $properties.localStorageAttendees -Delimiter ';' -Enco
 
 Disconnect-PnPOnline
 
-Connect-PnPOnline -Url $properties.archiveUrl
+Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
 
 $pnpFile = Add-PnPFile -Path $properties.localStorageAttendees -Folder $properties.localArchiveFolderUrl
 
