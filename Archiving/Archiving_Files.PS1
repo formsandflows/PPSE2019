@@ -52,7 +52,7 @@ foreach ($pnpListItem in $pnpListItems) {
 
 	$table.Rows.Add($row)
 
-	$file = $properties.localStorageFile + $pnpListItem.FieldValues.FileLeafRef + '.csv'
+	$file = $pnpListItem.FieldValues.FileLeafRef + '.csv'
 	$table | Export-Csv -Path $file -Delimiter ';' -Encoding 'UTF8' -NoTypeInformation
 
 	Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
