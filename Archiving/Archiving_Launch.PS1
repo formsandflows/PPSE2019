@@ -1,13 +1,20 @@
+$appName = Get-AutomationVariable -Name 'appName'
+$relativeArchiveUrl = Get-AutomationVariable -Name 'relativeArchiveUrl'
+$relativeUrl = Get-AutomationVariable -Name 'relativeUrl'
+$serviceAccount = Get-AutomationVariable -Name 'serviceAccount'
+$url = Get-AutomationVariable -Name 'url'
+
 $properties = @{}
 
+$properties.archiveUrl = $url + $relativeArchiveUrl
 $properties.localStorageAgenda = 'C:\__Temp\__Agenda.csv'
 $properties.localStorageAttendees = 'C:\__Temp\__Attendees.csv'
 $properties.localStorageFile = 'C:\__Temp\'
 $properties.localStorageLinks = 'C:\__Temp\__Links.csv'
-$properties.relativeArchiveUrl = '/sites/test2archive'
-$properties.url = 'https://ppse.sharepoint.com/sites/test2'
-
-$properties.archiveUrl = 'https://ppse.sharepoint.com' + $properties.relativeArchiveUrl
+$properties.overviewItems = @()
+$properties.relativeArchiveUrl = $relativeArchiveUrl
+$properties.relativeUrl = $relativeUrl
+$properties.url = $url + $relativeUrl
 
 .\Archiving_GetItems.PS1 -properties $properties
 
