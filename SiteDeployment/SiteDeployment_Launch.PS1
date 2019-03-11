@@ -1,7 +1,7 @@
 Param (
-    [string]$id,
-    [string]$title,
-    [string]$date
+	[string]$id,
+	[string]$title,
+	[string]$date
 )
 
 $appName = Get-AutomationVariable -Name 'appName'
