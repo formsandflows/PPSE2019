@@ -2,6 +2,8 @@ Param (
 	$properties
 )
 
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
 $tabelName = "Links"
 $table = New-Object system.Data.DataTable $tabName
 
@@ -13,7 +15,7 @@ $table.columns.add($col1)
 $table.columns.add($col2)
 $table.columns.add($col3)
 
-Connect-PnPOnline -Url $properties.itemUrl
+Connect-PnPOnline -Url $properties.itemUrl -Credentials $cred
 
 $pnpListItems = Get-PnPListItem -List 'Links'
 
@@ -31,7 +33,7 @@ $table | Export-Csv -Path $properties.localStorageLinks -Delimiter ';' -Encoding
 
 Disconnect-PnPOnline
 
-Connect-PnPOnline -Url $properties.archiveUrl
+Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
 
 $pnpFile = Add-PnPFile -Path $properties.localStorageLinks -Folder $properties.localArchiveFolderUrl
 
