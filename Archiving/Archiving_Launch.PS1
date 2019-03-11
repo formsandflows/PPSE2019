@@ -7,10 +7,10 @@ $url = Get-AutomationVariable -Name 'url'
 $properties = @{}
 
 $properties.archiveUrl = $url + $relativeArchiveUrl
-$properties.localStorageAgenda = 'C:\__Temp\__Agenda.csv'
-$properties.localStorageAttendees = 'C:\__Temp\__Attendees.csv'
-$properties.localStorageFile = 'C:\__Temp\'
-$properties.localStorageLinks = 'C:\__Temp\__Links.csv'
+$properties.localStorageAgenda = 'Agenda.csv'
+$properties.localStorageAttendees = 'Attendees.csv'
+$properties.localStorageFile = ''
+$properties.localStorageLinks = 'Links.csv'
 $properties.overviewItems = @()
 $properties.relativeArchiveUrl = $relativeArchiveUrl
 $properties.relativeUrl = $relativeUrl
