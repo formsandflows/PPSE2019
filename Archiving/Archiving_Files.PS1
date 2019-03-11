@@ -10,7 +10,7 @@ Disconnect-PnPOnline
 
 foreach ($pnpListItem in $pnpListItems) {
 	$tabelName = "File"
-	$table = New-Object system.Data.DataTable $tabName
+	$table = New-Object system.Data.DataTable $tabelName
 
 	$col1 = New-Object system.Data.DataColumn name,([string])
 	$col2 = New-Object system.Data.DataColumn title,([string])
