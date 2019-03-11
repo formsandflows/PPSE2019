@@ -1,1 +1,1 @@
-# PPSE2019
+# Power Platform Summit Europe - 2019
