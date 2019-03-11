@@ -2,7 +2,9 @@ Param (
 	$properties
 )
 
-Connect-PnPOnline -Url $properties.suburl
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
 
 $pnpPage = Add-PnPClientSidePage -Name 'Homepage' -CommentsEnabled:$false -Publish:$false
 $imageUrl = $properties.url + '/SiteAssets/Logo.jpg'
