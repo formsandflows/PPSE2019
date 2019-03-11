@@ -2,6 +2,8 @@ Param (
 	$properties
 )
 
+$cred = Get-AutomationPSCredential -Name 'Service Account'
+
 $tabelName = 'Report1'
 $table = New-Object system.Data.DataTable $tabName
 
@@ -15,7 +17,7 @@ $table.columns.add($col2)
 $table.columns.add($col3)
 $table.columns.add($col4)
 
-Connect-PnPOnline -Url $properties.url
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $pnpListItems = Get-PnPListItem -List 'Overview'
 
