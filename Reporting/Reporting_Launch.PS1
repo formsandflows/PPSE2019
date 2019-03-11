@@ -3,8 +3,8 @@ $url = Get-AutomationVariable -Name 'url'
 
 $properties = @{}
 
-$properties.localStorageOverview = 'C:\__Temp\Report1_'
-$properties.localStorageOverview2 = 'C:\__Temp\Report2_'
+$properties.localStorageOverview = 'Report1_'
+$properties.localStorageOverview2 = 'Report2_'
 $properties.relativeUrl = $relativeUrl
 $properties.url = $url + $relativeUrl
 
