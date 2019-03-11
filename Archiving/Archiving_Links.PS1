@@ -5,7 +5,7 @@ Param (
 $cred = Get-AutomationPSCredential -Name 'Service Account'
 
 $tabelName = "Links"
-$table = New-Object system.Data.DataTable $tabName
+$table = New-Object system.Data.DataTable $tabelName
 
 $col1 = New-Object system.Data.DataColumn title,([string])
 $col2 = New-Object system.Data.DataColumn url,([string])
