@@ -23,7 +23,7 @@ foreach ($pnpSubWeb in $pnpSubWebs) {
 	}
 }
 if (!$exists) {
-	New-PnPWeb -Title $title -Url $url -Description $description -Locale $locale -Template $template -BreakInheritance:$breakInheritance -InheritNavigation:$inheritNavigation
+	$pnpWeb = New-PnPWeb -Title $title -Url $url -Description $description -Locale $locale -Template $template -BreakInheritance:$breakInheritance -InheritNavigation:$inheritNavigation
 }
 
 Disconnect-PnPOnline
