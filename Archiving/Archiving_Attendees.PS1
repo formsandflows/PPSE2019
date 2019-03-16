@@ -2,9 +2,9 @@ Param (
 	$properties
 )
 
-$cred = Get-AutomationPSCredential -Name 'Service Account'
+$cred = Get-AutomationPSCredential -Name $properties.account
 
-$tabelName = "Attendees"
+$tabelName = 'Attendees'
 $table = New-Object system.Data.DataTable $tabelName
 
 $col1 = New-Object system.Data.DataColumn title,([string])

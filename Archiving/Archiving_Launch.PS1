@@ -6,6 +6,7 @@ $url = Get-AutomationVariable -Name 'url'
 
 $properties = @{}
 
+$properties.account = 'Service Account'
 $properties.archiveUrl = $url + $relativeArchiveUrl
 $properties.localStorageAgenda = 'Agenda.csv'
 $properties.localStorageAttendees = 'Attendees.csv'
@@ -22,7 +23,7 @@ foreach ($overviewItem in $overviewItems) {
     .\Archiving_GetItemProperties.ps1 -properties $properties -overviewItem $overviewItem
     .\Archiving_UpdateStatus.ps1 -properties $properties -overviewItem $overviewItem -status 'Archiving...'
 
-    .\Archiving_CreateContainer.ps1 -properties $properties -overviewItem $overviewItem
+    .\Archiving_CreateContainer.ps1 -properties $properties
 
     .\Archiving_Agenda.ps1 -properties $properties
     .\Archiving_Attendees.ps1 -properties $properties

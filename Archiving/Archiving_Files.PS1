@@ -2,14 +2,14 @@ Param (
 	$properties
 )
 
-$cred = Get-AutomationPSCredential -Name 'Service Account'
+$cred = Get-AutomationPSCredential -Name $properties.account
 
 Connect-PnPOnline -Url $properties.itemUrl -Credentials $cred
 $pnpListItems = Get-PnPListItem -List 'Files'
 Disconnect-PnPOnline
 
 foreach ($pnpListItem in $pnpListItems) {
-	$tabelName = "File"
+	$tabelName = 'File'
 	$table = New-Object system.Data.DataTable $tabelName
 
 	$col1 = New-Object system.Data.DataColumn name,([string])

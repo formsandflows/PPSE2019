@@ -4,7 +4,7 @@ Param (
 	$status
 )
 
-$cred = Get-AutomationPSCredential -Name 'Service Account'
+$cred = Get-AutomationPSCredential -Name $properties.account
 
 Connect-PnPOnline -Url $properties.url -Credentials $cred
 

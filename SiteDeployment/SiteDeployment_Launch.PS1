@@ -16,6 +16,7 @@ for ($i = 0; $i -lt 7; $i++) {
 	$subsiteUrl += Get-Random -Minimum 0 -Maximum 9
 }
 
+$properties.account = 'Service Account'
 $properties.appName = $appName
 $properties.relativeUrl = $relativeUrl
 $properties.requestID = $id

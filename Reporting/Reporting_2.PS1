@@ -2,7 +2,7 @@ Param (
 	$properties
 )
 
-$cred = Get-AutomationPSCredential -Name 'Service Account'
+$cred = Get-AutomationPSCredential -Name $properties.account
 
 $tabelName = 'Report2'
 $table = New-Object system.Data.DataTable $tabelName

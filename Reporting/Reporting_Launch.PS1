@@ -3,6 +3,7 @@ $url = Get-AutomationVariable -Name 'url'
 
 $properties = @{}
 
+$properties.account = 'Service Account'
 $properties.localStorageOverview = 'Report1_'
 $properties.localStorageOverview2 = 'Report2_'
 $properties.relativeUrl = $relativeUrl

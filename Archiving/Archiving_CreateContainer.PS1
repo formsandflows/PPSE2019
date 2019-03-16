@@ -1,9 +1,8 @@
 Param (
-	$properties,
-	 $overviewItem
+	$properties
 )
 
-$cred = Get-AutomationPSCredential -Name 'Service Account'
+$cred = Get-AutomationPSCredential -Name $properties.account
 
 Connect-PnPOnline -Url $properties.archiveUrl -Credentials $cred
 
