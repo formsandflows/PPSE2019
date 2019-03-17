@@ -55,7 +55,7 @@ $timestamp += 'Z'
 $file = $properties.localStorageOverview + $timestamp + '.csv'
 $table | Export-Csv -Path $file -Delimiter ';' -Encoding 'UTF8' -NoTypeInformation
 
-$contentType = 'Item'
+$contentType = 'Document'
 
 $pnpFile = Add-PnPFile -Path $file -Folder 'Reports' -ContentType $contentType -Values @{'fafapp3r2reporttype'='Report 1'; 'fafapp3r2date'=$date}
 
