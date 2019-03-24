@@ -31,15 +31,13 @@ foreach ($pnpListItem in $pnpListItems) {
 		$size = $pnpListItem2.FieldValues.SMTotalFileStreamSize
 	}
 
-	Disconnect-PnPOnline -Connection $connection
-
 	$row.url = $url
 	$row.size = $size.ToString()
 
 	$table.Rows.Add($row)
+	
+	Disconnect-PnPOnline
 }
-
-Connect-PnPOnline -Url $properties.url -Credentials $cred
 
 $date = Get-Date
 $timestamp = $date.Year.ToString()
@@ -57,10 +55,9 @@ $timestamp += 'Z'
 
 $file = $properties.localStorageOverview2 + $timestamp + '.csv'
 $table | Export-Csv -Path $file -Delimiter ';' -Encoding 'UTF8' -NoTypeInformation
-Connect-PnPOnline -Url $properties.url
 
-$contentType = 'Document'
+Connect-PnPOnline -Url $properties.url -Credentials $cred
 
-$pnpFile = Add-PnPFile -Path $file -Folder 'Reports' -ContentType $contentType -Values @{'fafapp3r2reporttype'='Report 2'; 'fafapp3r2date'=$date}
+$pnpFile = Add-PnPFile -Path $file -Folder 'Reports' -Values @{'fafapp3r2reporttype'='Report 2'; 'fafapp3r2date'=$date}
 
 Disconnect-PnPOnline
