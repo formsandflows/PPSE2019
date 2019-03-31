@@ -31,7 +31,7 @@ if ($pnpList -eq $null) {
 
 	$viewTitle = 'Agenda items - All'
 	$fields = 'ID','LinkTitle','fafapp3aorder','Modified','Editor','Version'
-	$qeury = '<OrderBy><FieldRef Name="fafapp3aorder" Ascending="FALSE" /></OrderBy>'
+	$qeury = '<OrderBy><FieldRef Name="fafapp3aorder" Ascending="TRUE" /></OrderBy>'
 	$paged = $true
 	$setAsDefault = $true
 	$pnpView = Add-PnPView -List $title -Title $viewTitle -Fields $fields -Query $qeury -Paged:$paged -SetAsDefault:$setAsDefault

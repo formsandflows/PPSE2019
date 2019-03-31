@@ -35,6 +35,14 @@ $properties.suburl = $properties.url + '/' + $properties.subsiteUrl
 
 .\SiteDeployment_Web.ps1 -properties $properties
 
+$cred = Get-AutomationPSCredential -Name $properties.account
+Connect-PnPOnline -Url $properties.suburl -Credentials $cred
+Set-PnPWebPermission -Group $properties.groupNameFAM -AddRole 'Read'
+Set-PnPWebPermission -Group $properties.groupNameMembers -AddRole 'Read'
+Set-PnPWebPermission -Group $properties.groupNameVisitors -AddRole 'Read'
+Set-PnPWebPermission -User $properties.$properties.serviceAccount -RemoveRole 'Full Control'
+Disconnect-PnPOnline
+
 .\SiteDeployment_Overview_UpdateItem.ps1 -properties $properties -status 'Subsite created'
 .\SiteDeployment_Overview_UpdateItem.ps1 -properties $properties -status 'Creating/Setting lists and doclibs'
 

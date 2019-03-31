@@ -14,8 +14,9 @@ $table.columns.add($col1)
 $table.columns.add($col2)
 
 Connect-PnPOnline -Url $properties.url -Credentials $cred
-$query = '<View><Query><Where><Eq><FieldRef Name="fafapp3ostatus" /><Value Type="Text">Active</Value></Eq></Where></Query></View>'
-$pnpListItems = Get-PnPListItem -List 'Overview' -Query $query
+# $query = '<View><Query><Where><Eq><FieldRef Name="fafapp3ostatus" /><Value Type="Text">Active</Value></Eq></Where></Query></View>'
+# $pnpListItems = Get-PnPListItem -List 'Overview' -Query $query
+$pnpListItems = Get-PnPListItem -List 'Overview'
 Disconnect-PnPOnline
 
 foreach ($pnpListItem in $pnpListItems) {
